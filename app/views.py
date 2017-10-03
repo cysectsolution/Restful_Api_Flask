@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, session, redirect, f
 from app import app
 from flask.ext.pymongo import PyMongo
 from werkzeug import secure_filename
-import bcrypt, json, requests, bson.binary, os, os.
+import bcrypt, json, requests, bson.binary
 
 #connections to the mongo database
 #app.config['MONGO_DBNAME'] = ''
