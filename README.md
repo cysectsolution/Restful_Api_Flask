@@ -1,4 +1,5 @@
 # Restful_Api_Flask
+Restful API with flask framework and mongodb, use pymongo. Simple login system with fields name , email, password.
 
 ## Cloning
 clone the repo  `git clone https://github.com/cysectsolution/Restful_Api_Flask `
