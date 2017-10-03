@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
 </head>
 
-<body>
+<body onload="greetings();">
     <h1 style="text-align:center;">RESTFUL API USING FLASK</h1>
+    <img id="book" src="{{ url_for('static',filename='images/rest.png')}}">
+    
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>
