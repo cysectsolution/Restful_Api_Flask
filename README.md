@@ -2,7 +2,7 @@
 Restful API with flask framework and mongodb, use pymongo. Simple login system with fields name , email, password.
 
 ## Forking
-Fork the repo, to make make changes on your own repository. Afterwards, make a pull request.
+Fork the repo so that you make changes on your own repository. Afterwards, make a pull request.
 
 ## Prerequisites
 You need to have flask installed in your local machine:
