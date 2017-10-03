@@ -13,17 +13,23 @@ Then install pymongo:
 ``` python
 $ pip install pymongo
 ``` 
+
 ## Environment
 Set up the environment. 
 Windows: `FlaskEnv\Scripts\activate`
 Linux: `FlaskEnv\bin\activate`
+
+## Requirements
+Install all the requirements
+```python
+$ pip install -r requirements.txt
+```
 
 ## Development server
 
 Run `python run.py` for a dev server. Navigate to `http://localhost:5000/`. The app will automatically reload if you change any of the python source files.
 
 ## Contributing
-
 Create your branch from the `develop branch ` 
 
 Take note not to do this from the `master branch `
