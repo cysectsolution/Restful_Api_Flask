@@ -13,6 +13,10 @@ Then install pymongo:
 ``` python
 $ pip install pymongo
 ``` 
+## Environment
+Set up the environment. 
+Windows: `FlaskEnv\Scripts\activate`
+Linux: `FlaskEnv\bin\activate`
 
 ## Development server
 
