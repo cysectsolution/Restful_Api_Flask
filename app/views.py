@@ -17,31 +17,37 @@ def index():
     	return 'you are logged in as ' + session['name']
     return render_template('index.html')
 
+#register process
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    if request.method=='POST':
-    	users= db.db.users
-		existing_user= users.find_one({'name': request.form['name']})
+    
+    if request.method == 'POST':
+        users = db.db.users
+        existing_user = users.find_one({'name' : request.form['name']})
 
-		 if existing_user is None:
-			hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-			users.insert({'name':request.form['name'], 'password':hashpass, 'email':request.form['email']})
-			session['name'] = request.form['name']
-			return redirect(url_for('index'))
-		return 'that name exists'	
-    	return render_template('register.html')
+        if existing_user is None:
+            hashpassword = bcrypt.hashpw(request.form['passwordword'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name':request.form['name'], 'passwordword': hashpassword, 'email':request.form['email']})
+            session['name'] =  request.form['name']
+            return redirect(url_for('index'))
 
-@app.route('/login', methods=['POST', 'GET'])
+       
+        return 'that name exists'
+
+    return render_template("register.html")
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     users = db.db.users
-  	login_user = users.find_one({'name': request.form['name']})
-	
+    login_user = users.find_one({'name': request.form['name']})
+    
     if login_user:
-        if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8'))==login_user['password'].encode('utf-8'):
-      	session ['name']=request.form['name']
-     	return redirect(url_for('index'))
-  	return 'Invalid name or password'
- 	return render_template('login.html')	
+        if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['passwordword']:
+            session['name'] = request.form['name']
+            return redirect(url_for('index'))
+        return 'Invalid name or password'
+    
+    return render_template('login.html')	
 
 
 if  __name__ == '__main__':
