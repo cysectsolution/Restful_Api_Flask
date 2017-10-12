@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+FlaskEnv/
 *.py[cod]
 *$py.class
 
@@ -86,6 +87,7 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
+FlaskEnv/
 
 # Spyder project settings
 .spyderproject
