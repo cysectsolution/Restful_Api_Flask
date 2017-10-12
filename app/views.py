@@ -22,33 +22,31 @@ def index():
 def register():
     
     if request.method == 'POST':
-        users = db.db.users
-        existing_user = users.find_one({'name' : request.form['name']})
-
-        if existing_user is None:
-            hashpassword = bcrypt.hashpw(request.form['passwordword'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name':request.form['name'], 'passwordword': hashpassword, 'email':request.form['email']})
-            session['name'] =  request.form['name']
-            return redirect(url_for('index'))
-
-       
-        return 'that name exists'
+    	users = db.db.users
+    	existing_user = users.find_one({'name' : request.form['name']})
+    	
+    	if request.form['name'] != "":
+    		if existing_user is None:
+    			hashpassword = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+    			users.insert({'name':request.form['name'], 'password': hashpassword, 'email':request.form['email']})
+    			session['name'] =  request.form['name']
+    			return redirect(url_for('index'))
+    		return 'that name exists'
 
     return render_template("register.html")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    users = db.db.users
-    login_user = users.find_one({'name': request.form['name']})
-    
-    if login_user:
-        if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['passwordword']:
-            session['name'] = request.form['name']
-            return redirect(url_for('index'))
-        return 'Invalid name or password'
-    
-    return render_template('login.html')	
-
+    if request.method == 'POST':
+    	users = db.db.users
+    	login_user = users.find_one({'name': request.form['name']})
+    	if login_user:
+    		if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+    			session['name'] = request.form['name']
+    			return redirect(url_for('index'))
+    		return 'Invalid name or password'
+    return render_template('login.html')			
+		
 
 if  __name__ == '__main__':
 	app.secret_key='mysecret'
